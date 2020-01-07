@@ -4,11 +4,11 @@
 
 Language modeling and Naive Bayes classification methods are applied to model an opinion spam classifier based on given training data set. The Naive Bayes performed well with an accuracy of 92.18% and the language modeling based opinion classifier gave an accuracy of  88.28% in the validation dataset.
 
-##	Language Model
+## Language Model
 
 In this section we briefly describe our model. Language model can be important in many applications like machine translation, speech recognition, summarization, dialogue systems.
 
-###	Model
+### Model
 
 In this probabilistic language modeling we assign a probability to a sequence of words W (e.g. a sentence)
 	p(W) = p(w1, w2, w3,.......,wn)
@@ -72,6 +72,7 @@ Results in Table 1 shows accuracies on the validation set using Unigram and Bigr
 
 ![](images/2.png)
 ![](images/1.png)
+
 Fig 1: Variation of k-values with Perplexity (PP) score
 
 ### Analysis of parameters:
@@ -173,10 +174,12 @@ We suspect that LM worked better in this case maybe because the bigrams present 
 
 Moreover, we also implemented confusion matrices for both the classifiers as a comparative study. Fig 2 and 3 shows the confusion matrices.
 
- ![](images/3.png)
+![](images/3.png)
+ 
 Fig 2: Confusion matrix for Language Model
 
 ![](images/4.png)
+
 Fig 3: Confusion matrix for Naive Bayes
 
 ### Details of Programming library usage
