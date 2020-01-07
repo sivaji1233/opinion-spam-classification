@@ -68,14 +68,13 @@ In our implementation, we calculated perplexity  in two ways:
 ●	Unigram Perplexity
 ●	Bigram Perplexity
 In Unigram Perplexity we only considered unigrams in our language model and in Bigram Perplexity we only considered bigram probabilities which includes unigram counts as well. 
-Results in Table 1 shows accuracies on the validation set using Unigram and Bigram perplexities. In our case, the Unigram Perplexities are giving better results. It is to be noted that in both cases, we have implemented smoothing and unknown word handling as described in 2.2.4.
+Results in Table 1 shows accuracies on the validation set using Unigram and Bigram perplexities. In our case, the Unigram Perplexities are giving better results. It is to be noted that in both cases, we have implemented smoothing and unknown word handling as described above.
 
+![](images/2.png)
 ![](images/1.png)
- 
- 
 Fig 1: Variation of k-values with Perplexity (PP) score
 
-2.2.7 Analysis of parameters:
+### Analysis of parameters:
 
 Table 1: Language modeling parameter tuning
 LC	SW	LE	ACC
@@ -91,12 +90,12 @@ LC	SW	LE	ACC
 1	1	1	59.37	55.86
 LC: Lower Case, SW: Stopwords, LE: Lemmatizer, ACC(Uni): Accuracy of validation as per Unigram and +1 smoothing, ACC(Bi): Accuracy of validation as per Bigram and +0.01 smoothing
 
-2.2.8 Results screenshot from Kaggle:
+### Results screenshot from Kaggle:
 
 Our prediction accuracy is 92.968% on test set as per the submission on the Kaggle for this Intrinsic Evaluation task.
 
 
-3 Naive Bayes Classification
+## Naive Bayes Classification
 
 Naive Bayes is a probabilistic classifier that 
 makes classification using Maximum A Posteriori decision rule in a Bayesian setting. 
@@ -111,25 +110,25 @@ CMAP = argmax P
 Multinomial Naive Bayes classifier is as below
 CNB = argmaxc𝝐C P(cj)  ℿx𝝐X P(x|c)
 
-3.1 Loading the Dataset
+### Loading the Dataset
 
 In this approach, we worked on the same dataset consisting of truthful and deceptive hotel reviews of 20 Chicago hotels. We used file open to load reviews in a list and corresponding labels in another list. We kept a concatenated list of all the reviews combining the truthful and deceptive sets. We assigned 0 for truthful and 1 for deceptive.
 
-3.2 Motivation of feature choices
+### Motivation of feature choices
 
 To apply machine learning models on the text documents, we first need to convert the text content into numerical feature vectors. An intuitive way of doing this is to implement using bag-of-words representation. In this approach, each word occurring in any document of the training set is assigned an id. For each training example, we count the occurence of word in it. Here, most counts would be zero and thus it is generally a high dimensional sparse dataset. Instead, we can save the space by storing only the non-zero parts of the feature vectors.
 
 We tested different values of smoothing parameter(alpha) on the validation set and came up with an optimal value of 1. We also tested with both unigrams and bigram representation in the CountVectorizer and found that a combination of unigram and bigram representation performed better. In the CountVectorizer, we tested with both removing and using stopwords, and found that the former approach increase the accuracy. 
 
-3.3 CountVectorizer
+## CountVectorizer
 
 In our project, we implemented CountVectorizer to convert the text into feature vector which a machine learning model can understand. CountVectorizer builds a dictionary of features and converts the input text into feature vectors. It includes text preprocessing, tokenizing and stop-word removal. 
 
-3.4 Training a Classifier
+## Training a Classifier
 
 After feature extraction, we can train a machine learning model to predict the review’s authenticity. In Naive Bayes, there are several variants but we chose MultinomialNB since it is more suited for word counts which we are using. We trained the model on the training dataset and validated results from the validation set. Thereafter, we predicted the labels of the test set and exported the result in the csv format. 
 
-3.5 Analysis of Parameters
+## Analysis of Parameters
 
 We evaluated our performance on the validation dataset initially. From the trained classifier, we got the predicted labels. The best accuracy we got on the validation set is 92.18% with using unigram and bigram feature matrix and stop words removing. Table 2 contains results with different parameter tuning on our validation set.
 
@@ -149,12 +148,12 @@ LC: Lower Case, SW: Stopwords, LE: Lemmatizer, ACC(Uni): Accuracy of validation 
 
 The best accuracy(92.18%) we got on the validation set is when we convert corpus to lowercase, remove stop words, implement lemmatization and with smoothing parameter=1.
 
-3.6 Results screenshot from Kaggle:
+## Results screenshot from Kaggle:
 
 Our prediction accuracy is 89.843% on the test set as per the submission on the Kaggle.
 
 
-4 Error Analysis and Comparison
+## Error Analysis and Comparison
 
 For the purpose of analysis and comparison, we selected two reviews, one that was classified corrected by one classifier but not by the other one and vice versa. Further, we tried to reason out why that was the case.
 
@@ -174,14 +173,13 @@ We suspect that LM worked better in this case maybe because the bigrams present 
 
 Moreover, we also implemented confusion matrices for both the classifiers as a comparative study. Fig 2 and 3 shows the confusion matrices.
 
- 
+ ![](images/3.png)
 Fig 2: Confusion matrix for Language Model
 
-
- 
+![](images/4.png)
 Fig 3: Confusion matrix for Naive Bayes
 
-5 Details of Programming library usage
+### Details of Programming library usage
 
 Following list of programming libraries are used.
 1) Pandas: for dataframes and also to export the results to csv
@@ -198,15 +196,10 @@ Transform a count matrix to a normalized tf or tf-idf representation
 used to remove stop-words from the corpus to improve the accuracy of the model
 
 
-7 References
+### References
 
 [1]https://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html
 [2]https://medium.com/@rnbrown/more-nlp-with-sklearns-countvectorizer-add577a0b8c8
 [3]https://towardsdatascience.com/stemming-lemmatization-what-ba782b7c0bd8
-[4] class notes (CS 5740)
-
-8  Feedback for the project:
-
-The project is appealing and we spent around 20 hours each to complete the project including the report.  It explored language modeling and Naive Bayes model techniques applications of which we have learnt in the class. 
 
 
